@@ -1,14 +1,14 @@
 package no.hvl.dat102.filmarkiv.test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import no.hvl.dat102.filmarkiv.impl.Sjanger;
-import no.hvl.dat102.filmarkiv.adt.FilmarkivADT;
 import no.hvl.dat102.filmarkiv.impl.Film;
 import no.hvl.dat102.filmarkiv.impl.Filmarkiv;
+import no.hvl.dat102.filmarkiv.impl.Sjanger;
 
 class FilmarkivTest {
 	

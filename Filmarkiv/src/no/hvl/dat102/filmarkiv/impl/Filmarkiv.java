@@ -34,7 +34,7 @@ public class Filmarkiv implements FilmarkivADT {
 		antall++;
 	}
 	
-	public void utvidTabell() {
+	private void utvidTabell() {
 		Film[] nyttArkiv = new Film[arkiv.length*2];
 		System.arraycopy(arkiv, 0, nyttArkiv, 0, arkiv.length);
 		arkiv = nyttArkiv;
@@ -63,6 +63,7 @@ public class Filmarkiv implements FilmarkivADT {
 				resultater++;
 			}
 		}
+		trimTab(tittelMatch);
 		return tittelMatch;
 	}
 
@@ -76,6 +77,7 @@ public class Filmarkiv implements FilmarkivADT {
 				resultater++;
 			}
 		}
+		trimTab(produsentMatch);
 		return produsentMatch;
 	}
 
@@ -95,5 +97,24 @@ public class Filmarkiv implements FilmarkivADT {
 		return antall;
 	}
 	
+	private int tabellStørrelse(Film[] tab) {
+		int størrelse = 0;
+		for (int i = 0; i < tab.length ; i++) {
+			if (tab[i] != null) {
+				størrelse++;
+			}
+		}
+		return størrelse;
+	}
+	private Film[] trimTab(Film[] tab) {
+		int n = tabellStørrelse(tab);
+		Film[] nyTab = new Film[n];
+		int i = 0;
+		while (i < n) {
+			nyTab[i] = tab[i];
+			i++;
+		}
+		return nyTab;
+	}
 
 }

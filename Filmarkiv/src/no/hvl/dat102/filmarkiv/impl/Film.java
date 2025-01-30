@@ -13,7 +13,7 @@ public class Film {
 	public Film () {
 		
 	}
-	public Film(int filmnr, String produsent, String tittel, int årstall,String sjanger, String filmselskap) {
+	public Film(int filmnr, String produsent, String tittel, int årstall, String sjanger, String filmselskap) {
 		super();
 		this.filmnr = filmnr;
 		this.produsent = produsent;
@@ -73,6 +73,11 @@ public class Film {
 			return false;
 		Film other = (Film) obj;
 		return filmnr == other.filmnr;
+	}
+	@Override
+	public String toString() {
+		return tittel+" ("+årstall+")\n"+"Produsent: "+produsent+"\n"+"Filmselskap: "+filmselskap+"\n"+"Sjanger: "+sjanger;
+		
 	}
 	
 	
