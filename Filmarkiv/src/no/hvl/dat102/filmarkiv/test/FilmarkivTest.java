@@ -6,17 +6,19 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import no.hvl.dat102.filmarkiv.adt.FilmarkivADT;
 import no.hvl.dat102.filmarkiv.impl.Film;
 import no.hvl.dat102.filmarkiv.impl.Filmarkiv;
+import no.hvl.dat102.filmarkiv.impl.Filmarkiv2;
 import no.hvl.dat102.filmarkiv.impl.Sjanger;
 
 class FilmarkivTest {
 	
-	Filmarkiv testArkiv;
+	FilmarkivADT testArkiv;
 	
 	@BeforeEach
 	public void oppsett(){
-		testArkiv = new Filmarkiv(5);
+		testArkiv = new Filmarkiv2();
 	}
 
 	@Test
@@ -24,6 +26,10 @@ class FilmarkivTest {
 		Film a = new Film(1, "Peter Jackson", "Lord of the Rings: The Fellowship of the Ring", 2001, "Fantasy", "New Line Cinema");
 		testArkiv.leggTilFilm(a);
 		assertEquals(1, testArkiv.antall());
+		Film b = new Film(2, "Peter Jackson", "Lord of the Rings: The Two Towers", 2002, "Fantasy", "New Line Cinema");
+		testArkiv.leggTilFilm(b);
+		assertEquals(2, testArkiv.antall());
+
 	}
 	@Test
 	void testFinnFilm(){
@@ -86,5 +92,7 @@ class FilmarkivTest {
 		testArkiv.leggTilFilm(d);
 		testArkiv.leggTilFilm(e);
 		assertEquals(5, testArkiv.antall());
+		assertTrue(testArkiv.slettFilm(3));
+		assertEquals(4, testArkiv.antall());
 	}
 }

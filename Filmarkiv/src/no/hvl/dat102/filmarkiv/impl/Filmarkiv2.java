@@ -6,8 +6,8 @@ public class Filmarkiv2 implements FilmarkivADT{
 	private int antall;
 	private LinearNode<Film> start;
 	
-	public Filmarkiv2 (LinearNode<Film> start) {
-		this.start = start;
+	public Filmarkiv2 () {
+		start = new LinearNode<Film>();
 		antall = 0;
 	}
 
@@ -16,11 +16,8 @@ public class Filmarkiv2 implements FilmarkivADT{
 		return rekursjon(nr, start).data;
 	}
 	public LinearNode<Film> rekursjon(int nr, LinearNode<Film> node) {
-		if (node.data.getFilmnr() == nr) {
-			return node;
-		} else if (node.neste != null) {
-			rekursjon(nr, node.neste);
-		}
+		if (node.data.getFilmnr() == nr) return node;
+		else if (node.neste != null) rekursjon(nr, node.neste);
 		return null;
 	}
 
@@ -28,12 +25,16 @@ public class Filmarkiv2 implements FilmarkivADT{
 	public void leggTilFilm(Film nyFilm) {
 		if (antall == 0) {
 			start.data = nyFilm;
-			antall+=1;
+			start.neste = new LinearNode<>();
+			antall++;
 		}else {
-			LinearNode<Film> ny = new LinearNode<>();
-			ny.data = nyFilm;
-			start = ny;
-			antall+=1;
+			LinearNode<Film> temp = start;
+			while (temp.data != null) {
+				temp = temp.neste;
+			}
+			temp.data = nyFilm;
+			temp.neste = new LinearNode<Film>();
+			antall++;
 		}
 	}
 
@@ -64,7 +65,7 @@ public class Filmarkiv2 implements FilmarkivADT{
 		Film[] tittelMatch = new Film[antall];
 		int resultater = 0;
 		LinearNode<Film> temp = start;
-		for (int i = 0; i<=antall-1;i++) {
+		for (int i = 0; i<antall;i++) {
 			if (temp.data.getTittel().contains(delstreng)) {
 				tittelMatch[resultater] = temp.data;
 				resultater++;
@@ -79,7 +80,7 @@ public class Filmarkiv2 implements FilmarkivADT{
 		Film[] produsentMatch = new Film[antall];
 		int resultater = 0;
 		LinearNode<Film> temp = start;
-		for (int i = 0; i<=antall-1;i++) {
+		for (int i = 0; i<antall;i++) {
 			if (temp.data.getTittel().contains(delstreng)) {
 				produsentMatch[resultater] = temp.data;
 				resultater++;
@@ -93,7 +94,7 @@ public class Filmarkiv2 implements FilmarkivADT{
 	public int antall(Sjanger sjanger) {
 		LinearNode<Film> temp = start;
 		int resultater = 0;
-		for (int i = 0; i <= antall-1; i++){
+		for (int i = 0; i < antall; i++){
 			if (temp.data.getSjanger() == sjanger) {
 				resultater++;
 			}

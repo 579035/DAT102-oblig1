@@ -44,8 +44,8 @@ public class Filmarkiv implements FilmarkivADT {
 	public boolean slettFilm(int filmnr) {
 		for (int i = 0; i<antall;i++) {
 			if (arkiv[i].getFilmnr() == filmnr) {
-				arkiv[i] = arkiv[antall];
-				arkiv[antall] = null;
+				arkiv[i] = arkiv[antall-1];
+				arkiv[antall-1] = null;
 				antall--;
 				return true;
 			}

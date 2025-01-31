@@ -22,6 +22,5 @@ public class Meny {
 		filmarkiv.leggTilFilm(c);
 		filmarkiv.leggTilFilm(d);
 		filmarkiv.leggTilFilm(e);
-		tekstgr.skrivUtFilm(a);
 	}
 }
